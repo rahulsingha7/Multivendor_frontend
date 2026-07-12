@@ -1,0 +1,65 @@
+@import "tailwindcss";
+@plugin "daisyui";
+
+@import url("https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&ital,opsz,wght@1,9..144,500&family=Inter:wght@400;500;600;700&display=swap");
+
+/*
+  Accent: "Sunset Coral" (replaces default Tailwind orange ramp
+  so existing orange-* utilities across the app pick this up).
+  Secondary accent: deep teal-green (--color-teal-*) for contrast
+  pops on badges, links, and secondary CTAs.
+  Tertiary accent: warm gold (--color-gold-*) for "top rated" /
+  highlight badges.
+  Headings: Fraunces (warm, contemporary serif) via font-serif.
+  Body: Inter via font-sans.
+*/
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Fraunces", ui-serif, Georgia, serif;
+
+  /* Primary accent: Sunset Coral */
+  --color-orange-50: #fff5f0;
+  --color-orange-100: #fee6dc;
+  --color-orange-200: #fbc9b7;
+  --color-orange-300: #f6a688;
+  --color-orange-400: #ee8868;
+  --color-orange-500: #e8714e;
+  --color-orange-600: #cc5934;
+  --color-orange-700: #a8452a;
+  --color-orange-800: #7d3320;
+  --color-orange-900: #4a1f14;
+
+  /* Secondary accent: deep teal-green */
+  --color-teal-50: #eaf4f0;
+  --color-teal-100: #cde6dd;
+  --color-teal-200: #9bcdba;
+  --color-teal-300: #65af95;
+  --color-teal-400: #3f8e76;
+  --color-teal-500: #2f6f5e;
+  --color-teal-600: #245a4b;
+  --color-teal-700: #1b463a;
+  --color-teal-800: #122f27;
+  --color-teal-900: #091812;
+
+  /* Tertiary accent: warm gold (badges / highlights) */
+  --color-gold-50: #fdf6e7;
+  --color-gold-100: #faebc8;
+  --color-gold-200: #f4d690;
+  --color-gold-300: #ecbf5e;
+  --color-gold-400: #e0a83c;
+  --color-gold-500: #c98e28;
+  --color-gold-600: #a3711e;
+  --color-gold-700: #7c5717;
+  --color-gold-800: #543a0f;
+  --color-gold-900: #2e1f08;
+
+  --color-cream: #fdf8f5;
+  --color-ink: #1a1a1a;
+  --color-line: #efe2dc;
+}
+
+body {
+  font-family: var(--font-sans);
+}
+
+@variant dark (&:where([data-theme=dark], [data-theme=dark] *));
