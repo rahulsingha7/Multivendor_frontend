@@ -5,7 +5,7 @@ import { FaSearch, FaTimes, FaHeart, FaRegHeart } from "react-icons/fa";
 import { FiShoppingBag, FiArrowLeft, FiArrowRight } from "react-icons/fi";
 import { motion as Motion, AnimatePresence } from "framer-motion";
 import { useCart } from "../../context/useCart";
-import useWishlist from "../../hooks/useWishlist";
+import useWishlist from "../../hooks/useWishList";
 import toast from "react-hot-toast";
 
 const categoryIcons = {

@@ -17,7 +17,7 @@ import {
   FaRegHeart,
 } from "react-icons/fa";
 import { FiSearch, FiUser, FiChevronDown } from "react-icons/fi";
-import useWishlist from "../../hooks/useWishlist";
+import useWishlist from "../../hooks/useWishList";
 
 const NAV_LINKS = [
   { label: "New arrivals", to: "/products?sort=newest" },

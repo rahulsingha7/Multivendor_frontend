@@ -5,7 +5,7 @@ import { motion as Motion } from "framer-motion";
 import { FaHeart, FaRegHeart } from "react-icons/fa";
 import { FiArrowUpRight, FiShoppingBag } from "react-icons/fi";
 import { useCart } from "../../context/useCart";
-import useWishlist from "../../hooks/useWishlist";
+import useWishlist from "../../hooks/useWishList";
 import toast from "react-hot-toast";
 
 const isNewProduct = (product) => {

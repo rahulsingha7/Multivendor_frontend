@@ -2,7 +2,7 @@ import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { motion as Motion, AnimatePresence } from "framer-motion";
 import { FiHeart, FiShoppingCart, FiTrash2, FiArrowLeft } from "react-icons/fi";
-import useWishlist from "../../hooks/useWishlist";
+import useWishlist from "../../hooks/useWishList";
 import { useCart } from "../../context/useCart";
 import toast from "react-hot-toast";
 

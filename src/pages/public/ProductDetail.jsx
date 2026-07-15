@@ -11,7 +11,7 @@ import {
 } from "react-icons/fa";
 import { FiArrowLeft, FiPackage, FiTag, FiUser } from "react-icons/fi";
 import { useCart } from "../../context/useCart";
-import useWishlist from "../../hooks/useWishlist";
+import useWishlist from "../../hooks/useWishList";
 import useRecentlyViewed from "../../hooks/useRecentlyViewed";
 import toast from "react-hot-toast";
 
