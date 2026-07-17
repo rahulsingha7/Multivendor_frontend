@@ -128,7 +128,7 @@ const Navbar = () => {
   return (
     <div className="sticky top-0 z-50">
       {/* ── Announcement bar ── */}
-      <div className="bg-ink text-cream text-center text-[11px] sm:text-xs tracking-[0.2em] uppercase py-2 px-4">
+      <div className="bg-ink text-cream text-center text-[13px] sm:text-xs tracking-[0.2em] uppercase py-2 px-4">
         Free shipping on orders over $75
         <span className="hidden sm:inline">
           {" "}
@@ -156,7 +156,7 @@ const Navbar = () => {
               scroll={() => window.scrollTo({ top: 0, behavior: "smooth" })}
               className="flex items-center gap-2 shrink-0"
             >
-              <span className="text-2xl sm:text-3xl font-serif font-semibold tracking-tight">
+              <span className="text-4xl sm:text-3xl font-serif font-semibold tracking-tight">
                 <span className="text-orange-500">Multi</span>
                 <span className="text-ink dark:text-base-content">Vendor</span>
               </span>
