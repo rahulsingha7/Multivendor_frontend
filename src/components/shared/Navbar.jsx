@@ -20,9 +20,9 @@ import { FiSearch, FiUser, FiChevronDown } from "react-icons/fi";
 import useWishlist from "../../hooks/useWishList";
 
 const NAV_LINKS = [
-  { label: "New arrivals", to: "/products?sort=newest" },
-  { label: "Best sellers", to: "/products?sort=popular" },
-  { label: "Sell with us", to: "/register/vendor" },
+  { label: "New Arrivals", to: "/products?sort=newest" },
+  { label: "Best Sellers", to: "/products?sort=popular" },
+  { label: "Sell With Us", to: "/register/vendor" },
 ];
 
 const Navbar = () => {
@@ -128,7 +128,7 @@ const Navbar = () => {
   return (
     <div className="sticky top-0 z-50">
       {/* ── Announcement bar ── */}
-      <div className="bg-ink text-cream text-center text-[13px] sm:text-xs tracking-[0.2em] uppercase py-2 px-4">
+      <div className="bg-ink text-cream text-center text-[13px] sm:text-sm tracking-[0.2em] uppercase py-2 px-4">
         Free shipping on orders over $75
         <span className="hidden sm:inline">
           {" "}
@@ -156,7 +156,7 @@ const Navbar = () => {
               scroll={() => window.scrollTo({ top: 0, behavior: "smooth" })}
               className="flex items-center gap-2 shrink-0"
             >
-              <span className="text-4xl sm:text-3xl font-serif font-semibold tracking-tight">
+              <span className="text-7xl sm:text-xl font-serif font-semibold tracking-tight">
                 <span className="text-orange-500">Multi</span>
                 <span className="text-ink dark:text-base-content">Vendor</span>
               </span>
@@ -165,11 +165,11 @@ const Navbar = () => {
             {!isAuthPage && (
               <>
                 {/* ── Category dropdown (desktop) ── */}
-                <div className="hidden lg:block relative" ref={categoryRef}>
+                <div className="hidden xl:block relative" ref={categoryRef}>
                   <Motion.button
                     whileTap={{ scale: 0.97 }}
                     onClick={() => setCategoryMenuOpen((p) => !p)}
-                    className="flex items-center gap-1.5 px-4 py-2 rounded-sm text-lg font-semibold text-ink dark:text-base-content hover:bg-orange-50 dark:hover:bg-base-200 hover:text-orange-600 dark:hover:text-orange-400 transition"
+                    className="flex items-center gap-1.5 px-4 py-2 rounded-sm text-7xl font-semibold text-ink dark:text-base-content hover:bg-orange-50 dark:hover:bg-base-200 hover:text-orange-600 dark:hover:text-orange-400 transition"
                   >
                     Shop by category
                     <FiChevronDown
@@ -190,7 +190,7 @@ const Navbar = () => {
                           <button
                             key={cat._id}
                             onClick={() => goToCategory(cat)}
-                            className="w-full text-left px-4 py-2.5 text-lg font-medium text-base-content/80 dark:text-base-content hover:bg-orange-50 dark:hover:bg-base-200 hover:text-orange-600 dark:hover:text-orange-400 transition"
+                            className="w-full text-left px-4 py-2.5 text-7xl font-medium text-7xl-content/80 dark:text-base-content hover:bg-orange-50 dark:hover:bg-base-200 hover:text-orange-600 dark:hover:text-orange-400 transition"
                           >
                             {cat.name}
                           </button>
@@ -198,7 +198,7 @@ const Navbar = () => {
                         <Link
                           to="/products"
                           onClick={() => setCategoryMenuOpen(false)}
-                          className="block px-4 py-2.5 text-lg font-semibold text-teal-600 dark:text-teal-300 border-t border-line dark:border-base-300 hover:bg-teal-50 dark:hover:bg-base-200 transition"
+                          className="block px-4 py-2.5 text-7xl font-semibold text-teal-600 dark:text-teal-300 border-t border-line dark:border-base-300 hover:bg-teal-50 dark:hover:bg-base-200 transition"
                         >
                           View all products &rarr;
                         </Link>
@@ -208,12 +208,12 @@ const Navbar = () => {
                 </div>
 
                 {/* ── Desktop Nav Links ── */}
-                <div className="hidden lg:flex items-center gap-1">
+                <div className="hidden xl:flex items-center gap-1">
                   {NAV_LINKS.map((link) => (
                     <Link
                       key={link.label}
                       to={link.to}
-                      className="relative px-3 py-2 text-lg font-semibold text-base-content/70 dark:text-base-content hover:text-orange-600 dark:hover:text-orange-400 transition-colors duration-200"
+                      className="relative px-3 py-2 text-7xl font-semibold text-7xl-content/70 dark:text-base-content hover:text-orange-600 dark:hover:text-orange-400 transition-colors duration-200"
                     >
                       {link.label}
                     </Link>
@@ -227,16 +227,16 @@ const Navbar = () => {
           {!isAuthPage && (
             <form
               onSubmit={handleSearch}
-              className="hidden md:flex items-center flex-1 max-w-md mx-2"
+              className="hidden xl:flex items-center flex-1 max-w-md mx-2"
             >
               <div className="flex items-center gap-2 w-full bg-base-200 dark:bg-base-200 rounded-full px-4 py-2 border border-transparent focus-within:border-orange-400 transition">
-                <FiSearch className="text-base-content/40 shrink-0" size={17} />
+                <FiSearch className="text-7xl-content/40 shrink-0" size={17} />
                 <input
                   type="text"
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  placeholder="Search products..."
-                  className="w-full bg-transparent outline-none text-lg text-base-content placeholder-base-content/40"
+                  placeholder="Search Products..."
+                  className="w-full bg-transparent outline-none text-7xl text-7xl-content placeholder-base-content/40"
                 />
               </div>
             </form>
@@ -245,7 +245,7 @@ const Navbar = () => {
           {/* ── Right: icons + auth + theme (desktop & mobile) ── */}
           <div className="flex items-center gap-1 shrink-0">
             {/* ── Desktop Right Side ── */}
-            <div className="hidden lg:flex items-center gap-1">
+            <div className="hidden xl:flex items-center gap-1">
               {(!user || user.role === "customer") && !isAuthPage && (
                 <>
                   {/* Wishlist */}
@@ -253,7 +253,7 @@ const Navbar = () => {
                     whileHover={{ scale: 1.1 }}
                     whileTap={{ scale: 0.95 }}
                     onClick={() => navigate("/wishlist")}
-                    className="relative p-2.5 rounded-sm hover:bg-teal-50 dark:hover:bg-base-200 text-base-content/70 dark:text-base-content hover:text-teal-600 dark:hover:text-teal-300 transition-colors"
+                    className="relative p-2.5 rounded-sm hover:bg-teal-50 dark:hover:bg-base-200 text-7xl-content/70 dark:text-base-content hover:text-teal-600 dark:hover:text-teal-300 transition-colors"
                     title="Wishlist"
                   >
                     {wishlist.length > 0 ? (
@@ -276,7 +276,7 @@ const Navbar = () => {
                     whileHover={{ scale: 1.1 }}
                     whileTap={{ scale: 0.95 }}
                     onClick={() => navigate("/cart")}
-                    className="relative p-2.5 rounded-sm hover:bg-orange-50 dark:hover:bg-base-200 text-base-content/70 dark:text-base-content hover:text-orange-600 dark:hover:text-orange-400 transition-colors"
+                    className="relative p-2.5 rounded-sm hover:bg-orange-50 dark:hover:bg-base-200 text-7xl-content/70 dark:text-base-content hover:text-orange-600 dark:hover:text-orange-400 transition-colors"
                     title="Cart"
                   >
                     <FaShoppingBag size={19} />
@@ -300,7 +300,7 @@ const Navbar = () => {
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.97 }}
                       onClick={() => navigate("/customer/orders")}
-                      className="px-3 py-2 text-lg font-semibold text-base-content/70 dark:text-base-content hover:text-orange-600 dark:hover:text-orange-400 transition-colors"
+                      className="px-3 py-2 text-7xl font-semibold text-7xl-content/70 dark:text-base-content hover:text-orange-600 dark:hover:text-orange-400 transition-colors"
                     >
                       Orders
                     </Motion.button>
@@ -312,7 +312,7 @@ const Navbar = () => {
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.97 }}
                         onClick={() => navigate("/customer/seller-dashboard")}
-                        className="px-3 py-2 text-lg font-semibold text-base-content/70 dark:text-base-content hover:text-orange-600 dark:hover:text-orange-400 transition-colors"
+                        className="px-3 py-2 text-7xl font-semibold text-7xl-content/70 dark:text-base-content hover:text-orange-600 dark:hover:text-orange-400 transition-colors"
                       >
                         My Store
                       </Motion.button>
@@ -320,7 +320,7 @@ const Navbar = () => {
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.97 }}
                         onClick={() => navigate("/customer/my-products")}
-                        className="px-3 py-2 text-lg font-semibold text-base-content/70 dark:text-base-content hover:text-orange-600 dark:hover:text-orange-400 transition-colors"
+                        className="px-3 py-2 text-7xl font-semibold text-7xl-content/70 dark:text-base-content hover:text-orange-600 dark:hover:text-orange-400 transition-colors"
                       >
                         My Products
                       </Motion.button>
@@ -328,7 +328,7 @@ const Navbar = () => {
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.97 }}
                         onClick={() => navigate("/customer/create-product")}
-                        className="px-3 py-2 text-lg font-semibold bg-orange-500 hover:bg-orange-600 text-white rounded-full transition"
+                        className="px-3 py-2 text-7xl font-semibold bg-orange-500 hover:bg-orange-600 text-white rounded-full transition"
                       >
                         + List Product
                       </Motion.button>
@@ -343,19 +343,19 @@ const Navbar = () => {
                   <div className="flex items-center gap-2 ml-1">
                     <HashLink
                       to="/login"
-                      className="px-4 py-2 text-lg font-semibold text-base-content/70 dark:text-base-content hover:text-orange-600 dark:hover:text-orange-400 transition-colors"
+                      className="px-4 py-2 text-7xl font-semibold text-7xl-content/70 dark:text-base-content hover:text-orange-600 dark:hover:text-orange-400 transition-colors"
                     >
                       Login
                     </HashLink>
                     <HashLink
                       to="/register/customer"
-                      className="px-4 py-2 text-lg font-semibold border border-ink dark:border-base-content text-ink dark:text-base-content hover:bg-ink hover:text-cream dark:hover:bg-base-content dark:hover:text-base-100 rounded-full transition-all duration-200"
+                      className="px-4 py-2 text-7xl font-semibold border border-ink dark:border-base-content text-ink dark:text-base-content hover:bg-ink hover:text-cream dark:hover:bg-base-content dark:hover:text-base-100 rounded-full transition-all duration-200"
                     >
                       Sign Up
                     </HashLink>
                     <HashLink
                       to="/register/vendor"
-                      className="px-4 py-2 text-lg font-semibold bg-orange-500 hover:bg-orange-600 text-white rounded-full transition-all duration-200 shadow-sm"
+                      className="px-4 py-2 text-7xl font-semibold bg-orange-500 hover:bg-orange-600 text-white rounded-full transition-all duration-200 shadow-sm"
                     >
                       Sell with Us
                     </HashLink>
@@ -370,7 +370,7 @@ const Navbar = () => {
                           ? "/vendor/dashboard"
                           : "/admin/dashboard"
                       }
-                      className="flex items-center gap-1.5 px-3 py-2 rounded-full bg-base-200 dark:bg-base-200 text-lg font-semibold text-base-content dark:text-base-content hover:bg-orange-50 hover:text-orange-600 dark:hover:text-orange-400 transition"
+                      className="flex items-center gap-1.5 px-3 py-2 rounded-full bg-base-200 dark:bg-base-200 text-7xl font-semibold text-7xl-content dark:text-base-content hover:bg-orange-50 hover:text-orange-600 dark:hover:text-orange-400 transition"
                     >
                       <FaTachometerAlt size={13} />
                       Dashboard
@@ -384,10 +384,10 @@ const Navbar = () => {
                       onClick={() => navigate("/customer/profile")}
                       className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-base-200 dark:bg-base-200 hover:bg-orange-50 dark:hover:bg-base-300 transition cursor-pointer"
                     >
-                      <div className="w-7 h-7 rounded-full bg-orange-500 flex items-center justify-center text-white text-sm font-bold">
+                      <div className="w-7 h-7 rounded-full bg-orange-500 flex items-center justify-center text-white text-7xl font-bold">
                         {user?.name?.[0]?.toUpperCase() || <FiUser size={12} />}
                       </div>
-                      <span className="text-base font-semibold text-base-content dark:text-base-content max-w-[100px] truncate">
+                      <span className="text-7xl font-semibold text-7xl-content dark:text-base-content max-w-[100px] truncate">
                         {user?.name}
                       </span>
                     </Motion.button>
@@ -410,7 +410,7 @@ const Navbar = () => {
                 whileHover={{ scale: 1.1, rotate: 20 }}
                 whileTap={{ scale: 0.9 }}
                 onClick={toggleTheme}
-                className="p-2.5 rounded-sm hover:bg-base-200 dark:hover:bg-base-200 text-base-content/60 dark:text-base-content transition"
+                className="p-2.5 rounded-sm hover:bg-base-200 dark:hover:bg-base-200 text-7xl-content/60 dark:text-base-content transition"
               >
                 <AnimatePresence mode="wait">
                   <Motion.div
@@ -427,13 +427,13 @@ const Navbar = () => {
             </div>
 
             {/* ── Mobile Right ── */}
-            <div className="flex lg:hidden items-center gap-1" ref={mobileRef}>
+            <div className="flex xl:hidden items-center gap-1" ref={mobileRef}>
               {(!user || user.role === "customer") && !isAuthPage && (
                 <Motion.button
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.95 }}
                   onClick={() => navigate("/cart")}
-                  className="relative p-2 text-base-content/70 dark:text-base-content"
+                  className="relative p-2 text-7xl-content/70 dark:text-base-content"
                 >
                   <FaShoppingBag size={20} />
                   <AnimatePresence>
@@ -455,7 +455,7 @@ const Navbar = () => {
               <Motion.button
                 whileTap={{ scale: 0.9 }}
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                className="p-2 rounded-sm text-base-content/70 dark:text-base-content hover:bg-base-200 dark:hover:bg-base-200 transition"
+                className="p-2 rounded-sm text-7xl-content/70 dark:text-base-content hover:bg-base-200 dark:hover:bg-base-200 transition"
               >
                 <AnimatePresence mode="wait">
                   <Motion.div
@@ -479,8 +479,8 @@ const Navbar = () => {
 
         {/* ── Category strip (desktop, below main bar) ── */}
         {!isAuthPage && categories.length > 0 && (
-          <div className="hidden lg:block border-t border-line dark:border-base-300 mt-2">
-            <div className="px-4 sm:px-10 lg:px-16 flex items-center gap-6 overflow-x-auto py-2 text-lg text-base-content/60 dark:text-base-content/70">
+          <div className="hidden xl:block border-t border-line dark:border-base-300 mt-2">
+            <div className="px-4 sm:px-10 lg:px-16 flex items-center gap-6 overflow-x-auto py-2 text-7xl text-7xl-content/60 dark:text-base-content/70">
               {categories.map((cat) => (
                 <button
                   key={cat._id}
@@ -509,22 +509,22 @@ const Navbar = () => {
             animate={{ opacity: 1, y: 0, height: "auto" }}
             exit={{ opacity: 0, y: -10, height: 0 }}
             transition={{ duration: 0.25, ease: "easeOut" }}
-            className="lg:hidden overflow-hidden bg-base-100 border-t border-b border-line dark:border-base-300"
+            className="xl:hidden overflow-hidden bg-base-100 border-t border-b border-line dark:border-base-300"
           >
             <div className="px-4 sm:px-10 lg:px-16 py-4 flex flex-col gap-1">
               {!isAuthPage && (
                 <form onSubmit={handleSearch} className="mb-2">
                   <div className="flex items-center gap-2 bg-base-200 rounded-full px-4 py-2.5 border border-transparent focus-within:border-orange-400 transition">
                     <FiSearch
-                      className="text-base-content/40 shrink-0"
+                      className="text-7xl-content/40 shrink-0"
                       size={16}
                     />
                     <input
                       type="text"
                       value={searchQuery}
                       onChange={(e) => setSearchQuery(e.target.value)}
-                      placeholder="Search products..."
-                      className="w-full bg-transparent outline-none text-lg text-base-content placeholder-base-content/40"
+                      placeholder="Search Products..."
+                      className="w-full bg-transparent outline-none text-7xl text-7xl-content placeholder-base-content/40"
                     />
                   </div>
                 </form>
@@ -541,7 +541,7 @@ const Navbar = () => {
                     <Link
                       to={link.to}
                       onClick={() => setIsMobileMenuOpen(false)}
-                      className="block px-4 py-3 rounded-sm text-lg font-semibold text-base-content dark:text-base-content hover:bg-orange-50 dark:hover:bg-base-200 hover:text-orange-600 dark:hover:text-orange-400 transition"
+                      className="block px-4 py-3 rounded-sm text-7xl font-semibold text-7xl-content dark:text-base-content hover:bg-orange-50 dark:hover:bg-base-200 hover:text-orange-600 dark:hover:text-orange-400 transition"
                     >
                       {link.label}
                     </Link>
@@ -550,7 +550,7 @@ const Navbar = () => {
 
               {!isAuthPage && categories.length > 0 && (
                 <>
-                  <p className="px-4 pt-3 pb-1 text-xs uppercase tracking-[0.2em] text-base-content/40 font-semibold">
+                  <p className="px-4 pt-3 pb-1 text-7xl uppercase tracking-[0.2em] text-7xl-content/40 font-semibold">
                     Categories
                   </p>
                   <div className="px-4 flex flex-wrap gap-2 pb-2">
@@ -561,7 +561,7 @@ const Navbar = () => {
                           goToCategory(cat);
                           setIsMobileMenuOpen(false);
                         }}
-                        className="px-3 py-1.5 rounded-full border border-line dark:border-base-300 text-xs font-medium text-base-content/70 hover:border-orange-400 hover:text-orange-600 dark:hover:text-orange-400 transition"
+                        className="px-3 py-1.5 rounded-full border border-line dark:border-base-300 text-7xl font-medium text-7xl-content/70 hover:border-orange-400 hover:text-orange-600 dark:hover:text-orange-400 transition"
                       >
                         {cat.name}
                       </button>
@@ -582,7 +582,7 @@ const Navbar = () => {
                         navigate("/customer/orders");
                         setIsMobileMenuOpen(false);
                       }}
-                      className="w-full text-left px-4 py-3 rounded-sm text-base font-semibold text-base-content dark:text-base-content hover:bg-orange-50 hover:text-orange-600 dark:hover:text-orange-400 transition"
+                      className="w-full text-left px-4 py-3 rounded-sm text-7xl font-semibold text-7xl-content dark:text-base-content hover:bg-orange-50 hover:text-orange-600 dark:hover:text-orange-400 transition"
                     >
                       My Orders
                     </button>
@@ -599,7 +599,7 @@ const Navbar = () => {
                             navigate("/customer/my-products");
                             setIsMobileMenuOpen(false);
                           }}
-                          className="w-full text-left px-4 py-3 rounded-sm text-base font-semibold text-base-content dark:text-base-content hover:bg-orange-50 hover:text-orange-600 dark:hover:text-orange-400 transition"
+                          className="w-full text-left px-4 py-3 rounded-sm text-7xl font-semibold text-7xl-content dark:text-base-content hover:bg-orange-50 hover:text-orange-600 dark:hover:text-orange-400 transition"
                         >
                           My Products
                         </button>
@@ -614,7 +614,7 @@ const Navbar = () => {
                             navigate("/customer/create-product");
                             setIsMobileMenuOpen(false);
                           }}
-                          className="w-full text-left px-4 py-3 rounded-sm text-base font-semibold text-orange-600 dark:text-orange-400 hover:bg-orange-50 transition"
+                          className="w-full text-left px-4 py-3 rounded-sm text-7xl font-semibold text-orange-600 dark:text-orange-400 hover:bg-orange-50 transition"
                         >
                           + List a Product
                         </button>
@@ -631,7 +631,7 @@ const Navbar = () => {
                         navigate("/wishlist");
                         setIsMobileMenuOpen(false);
                       }}
-                      className="w-full text-left flex items-center justify-between px-4 py-3 rounded-sm text-base font-semibold text-base-content dark:text-base-content hover:bg-teal-50 hover:text-teal-600 dark:hover:text-teal-300 transition"
+                      className="w-full text-left flex items-center justify-between px-4 py-3 rounded-sm text-7xl font-semibold text-7xl-content dark:text-base-content hover:bg-teal-50 hover:text-teal-600 dark:hover:text-teal-300 transition"
                     >
                       <span className="flex items-center gap-2">
                         <FaRegHeart size={14} /> Wishlist
@@ -654,21 +654,21 @@ const Navbar = () => {
                     <HashLink
                       to="/login"
                       onClick={() => setIsMobileMenuOpen(false)}
-                      className="px-4 py-3 rounded-full text-base font-semibold text-center text-base-content border border-line dark:border-base-300 hover:border-orange-400 hover:text-orange-600 dark:hover:text-orange-400 transition"
+                      className="px-4 py-3 rounded-full text-7xl font-semibold text-center text-7xl-content border border-line dark:border-base-300 hover:border-orange-400 hover:text-orange-600 dark:hover:text-orange-400 transition"
                     >
                       Login
                     </HashLink>
                     <HashLink
                       to="/register/customer"
                       onClick={() => setIsMobileMenuOpen(false)}
-                      className="px-4 py-3 rounded-full text-base font-semibold text-center border border-ink dark:border-base-content text-ink dark:text-base-content hover:bg-ink hover:text-cream dark:hover:bg-base-content dark:hover:text-base-100 transition"
+                      className="px-4 py-3 rounded-full text-7xl font-semibold text-center border border-ink dark:border-base-content text-ink dark:text-base-content hover:bg-ink hover:text-cream dark:hover:bg-base-content dark:hover:text-base-100 transition"
                     >
                       Customer Sign Up
                     </HashLink>
                     <HashLink
                       to="/register/vendor"
                       onClick={() => setIsMobileMenuOpen(false)}
-                      className="px-4 py-3 rounded-full text-base font-semibold text-center bg-orange-500 hover:bg-orange-600 text-white transition"
+                      className="px-4 py-3 rounded-full text-7xl font-semibold text-center bg-orange-500 hover:bg-orange-600 text-white transition"
                     >
                       Sell with Us
                     </HashLink>
@@ -677,14 +677,14 @@ const Navbar = () => {
               ) : (
                 <div className="flex flex-col gap-2">
                   <div className="flex items-center gap-3 px-4 py-3 bg-base-200 dark:bg-base-200 rounded-sm">
-                    <div className="w-8 h-8 rounded-full bg-orange-500 flex items-center justify-center text-white text-base font-bold">
+                    <div className="w-8 h-8 rounded-full bg-orange-500 flex items-center justify-center text-white text-7xl font-bold">
                       {user?.name?.[0]?.toUpperCase() || "U"}
                     </div>
                     <div>
-                      <p className="text-base font-bold text-base-content dark:text-base-content">
+                      <p className="text-7xl font-bold text-7xl-content dark:text-base-content">
                         {user?.name}
                       </p>
-                      <p className="text-xs text-base-content/40 capitalize">
+                      <p className="text-7xl text-7xl-content/40 capitalize">
                         {user?.role}
                       </p>
                     </div>
@@ -698,7 +698,7 @@ const Navbar = () => {
                           : "/admin/dashboard"
                       }
                       onClick={() => setIsMobileMenuOpen(false)}
-                      className="flex items-center gap-2 px-4 py-3 rounded-sm text-base font-semibold text-base-content dark:text-base-content hover:bg-orange-50 hover:text-orange-600 dark:hover:text-orange-400 transition"
+                      className="flex items-center gap-2 px-4 py-3 rounded-sm text-7xl font-semibold text-7xl-content dark:text-base-content hover:bg-orange-50 hover:text-orange-600 dark:hover:text-orange-400 transition"
                     >
                       <FaTachometerAlt size={13} /> Dashboard
                     </HashLink>
@@ -709,7 +709,7 @@ const Navbar = () => {
                       handleLogout();
                       setIsMobileMenuOpen(false);
                     }}
-                    className="flex items-center justify-center gap-2 px-4 py-3 rounded-sm text-base font-semibold bg-red-50 dark:bg-red-900/20 text-red-500 hover:bg-red-100 transition"
+                    className="flex items-center justify-center gap-2 px-4 py-3 rounded-sm text-7xl font-semibold bg-red-50 dark:bg-red-900/20 text-red-500 hover:bg-red-100 transition"
                   >
                     <FaSignOutAlt /> Logout
                   </button>
@@ -723,7 +723,7 @@ const Navbar = () => {
                   toggleTheme();
                   setIsMobileMenuOpen(false);
                 }}
-                className="flex items-center gap-3 px-4 py-3 rounded-sm text-base font-semibold text-base-content dark:text-base-content hover:bg-base-200 dark:hover:bg-base-200 transition"
+                className="flex items-center gap-3 px-4 py-3 rounded-sm text-7xl font-semibold text-7xl-content dark:text-base-content hover:bg-base-200 dark:hover:bg-base-200 transition"
               >
                 {isDark ? <FaSun size={15} /> : <FaMoon size={15} />}
                 {isDark ? "Switch to Light Mode" : "Switch to Dark Mode"}
