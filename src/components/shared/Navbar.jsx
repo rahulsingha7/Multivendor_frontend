@@ -20,9 +20,9 @@ import { FiSearch, FiUser, FiChevronDown } from "react-icons/fi";
 import useWishlist from "../../hooks/useWishList";
 
 const NAV_LINKS = [
-  { label: "New arrivals", to: "/products?sort=newest" },
-  { label: "Best sellers", to: "/products?sort=popular" },
-  { label: "Sell with us", to: "/register/vendor" },
+  { label: "New Arrivals", to: "/products?sort=newest" },
+  { label: "Best Sellers", to: "/products?sort=popular" },
+  { label: "Sell With Us", to: "/register/vendor" },
 ];
 
 const Navbar = () => {
@@ -156,7 +156,7 @@ const Navbar = () => {
               scroll={() => window.scrollTo({ top: 0, behavior: "smooth" })}
               className="flex items-center gap-2 shrink-0"
             >
-              <span className="text-7xl sm:text-3xl font-serif font-semibold tracking-tight">
+              <span className="text-7xl sm:text-xl font-serif font-semibold tracking-tight">
                 <span className="text-orange-500">Multi</span>
                 <span className="text-ink dark:text-base-content">Vendor</span>
               </span>
@@ -235,7 +235,7 @@ const Navbar = () => {
                   type="text"
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  placeholder="Search products..."
+                  placeholder="Search Products..."
                   className="w-full bg-transparent outline-none text-7xl text-7xl-content placeholder-base-content/40"
                 />
               </div>
@@ -523,7 +523,7 @@ const Navbar = () => {
                       type="text"
                       value={searchQuery}
                       onChange={(e) => setSearchQuery(e.target.value)}
-                      placeholder="Search products..."
+                      placeholder="Search Products..."
                       className="w-full bg-transparent outline-none text-7xl text-7xl-content placeholder-base-content/40"
                     />
                   </div>
