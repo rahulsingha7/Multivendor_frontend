@@ -20,9 +20,9 @@ import { FiSearch, FiUser, FiChevronDown } from "react-icons/fi";
 import useWishlist from "../../hooks/useWishList";
 
 const NAV_LINKS = [
-  { label: "New arrivals", to: "/products?sort=newest" },
-  { label: "Best sellers", to: "/products?sort=popular" },
-  { label: "Sell with us", to: "/register/vendor" },
+  { label: "New Arrivals", to: "/products?sort=newest" },
+  { label: "Best Sellers", to: "/products?sort=popular" },
+  { label: "Sell With Us", to: "/register/vendor" },
 ];
 
 const Navbar = () => {
@@ -52,7 +52,6 @@ const Navbar = () => {
     "/forgot-password",
   ].includes(location.pathname);
 
-  // Fetch categories for the category menu / strip
   useEffect(() => {
     axios
       .get(`${import.meta.env.VITE_API_BASE_URL}/api/categories`)
@@ -60,14 +59,12 @@ const Navbar = () => {
       .catch(() => {});
   }, []);
 
-  // Shrink navbar on scroll
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
     window.addEventListener("scroll", onScroll);
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // Close mobile menu / category dropdown on outside click
   useEffect(() => {
     const handler = (e) => {
       if (mobileRef.current && !mobileRef.current.contains(e.target)) {
@@ -81,7 +78,6 @@ const Navbar = () => {
     return () => document.removeEventListener("mousedown", handler);
   }, []);
 
-  // Close menus on route change
   useEffect(() => {
     setIsMobileMenuOpen(false);
     setCategoryMenuOpen(false);
@@ -127,12 +123,12 @@ const Navbar = () => {
 
   return (
     <div className="sticky top-0 z-50">
-      {/* ── Announcement bar ── */}
-      <div className="bg-ink text-cream text-center text-[13px] sm:text-xs tracking-[0.2em] uppercase py-2 px-4">
-        Free shipping on orders over $75
+      {/* Announcement bar */}
+      <div className="bg-ink text-cream text-center text-xs sm:text-sm tracking-[0.2em] uppercase py-2 px-4 font-medium">
+        Free Shipping On Orders Over $75
         <span className="hidden sm:inline">
           {" "}
-          &nbsp;&middot;&nbsp; New vendors added weekly
+          &nbsp;&middot;&nbsp; New Vendors Added Weekly
         </span>
       </div>
 
@@ -142,21 +138,21 @@ const Navbar = () => {
         transition={{ duration: 0.5, ease: "easeOut" }}
         className={`transition-all duration-300 border-b border-line dark:border-base-300 ${
           scrolled
-            ? "bg-base-100/90 backdrop-blur-md shadow-sm py-3"
-            : "bg-base-100 py-4"
+            ? "bg-base-100/90 backdrop-blur-md shadow-sm py-2"
+            : "bg-base-100 py-3"
         }`}
       >
-        <div className="px-4 sm:px-10 lg:px-16 flex items-center justify-between gap-4">
-          {/* ── Left: brand + category + nav links ── */}
-          <div className="flex items-center gap-4 shrink-0">
-            {/* ── Brand ── */}
+        <div className="px-4 sm:px-8 lg:px-16 flex items-center justify-between gap-3">
+          {/* Left: Brand + Category + Nav Links */}
+          <div className="flex items-center gap-3 shrink-0">
+            {/* Brand */}
             <HashLink
               smooth
               to="/#"
               scroll={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-              className="flex items-center gap-2 shrink-0"
+              className="flex items-center shrink-0"
             >
-              <span className="text-4xl sm:text-3xl font-serif font-semibold tracking-tight">
+              <span className="text-2xl sm:text-3xl font-serif font-semibold tracking-tight">
                 <span className="text-orange-500">Multi</span>
                 <span className="text-ink dark:text-base-content">Vendor</span>
               </span>
@@ -164,16 +160,16 @@ const Navbar = () => {
 
             {!isAuthPage && (
               <>
-                {/* ── Category dropdown (desktop) ── */}
-                <div className="hidden lg:block relative" ref={categoryRef}>
+                {/* Category Dropdown — desktop only */}
+                <div className="hidden xl:block relative" ref={categoryRef}>
                   <Motion.button
                     whileTap={{ scale: 0.97 }}
                     onClick={() => setCategoryMenuOpen((p) => !p)}
-                    className="flex items-center gap-1.5 px-4 py-2 rounded-sm text-lg font-semibold text-ink dark:text-base-content hover:bg-orange-50 dark:hover:bg-base-200 hover:text-orange-600 dark:hover:text-orange-400 transition"
+                    className="flex items-center gap-1.5 px-3 py-2 rounded-lg text-base font-semibold text-ink dark:text-base-content hover:bg-orange-50 dark:hover:bg-base-200 hover:text-orange-600 dark:hover:text-orange-400 transition"
                   >
-                    Shop by category
+                    Shop By Category
                     <FiChevronDown
-                      size={16}
+                      size={15}
                       className={`transition-transform ${categoryMenuOpen ? "rotate-180" : ""}`}
                     />
                   </Motion.button>
@@ -184,13 +180,13 @@ const Navbar = () => {
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: -8 }}
                         transition={{ duration: 0.15 }}
-                        className="absolute left-0 mt-2 w-56 bg-base-100 border border-line dark:border-base-300 rounded-sm shadow-xl overflow-hidden z-50"
+                        className="absolute left-0 mt-2 w-52 bg-base-100 border border-line dark:border-base-300 rounded-xl shadow-xl overflow-hidden z-50"
                       >
                         {categories.map((cat) => (
                           <button
                             key={cat._id}
                             onClick={() => goToCategory(cat)}
-                            className="w-full text-left px-4 py-2.5 text-lg font-medium text-base-content/80 dark:text-base-content hover:bg-orange-50 dark:hover:bg-base-200 hover:text-orange-600 dark:hover:text-orange-400 transition"
+                            className="w-full text-left px-4 py-2.5 text-sm font-medium text-base-content/80 hover:bg-orange-50 dark:hover:bg-base-200 hover:text-orange-600 transition capitalize"
                           >
                             {cat.name}
                           </button>
@@ -198,22 +194,22 @@ const Navbar = () => {
                         <Link
                           to="/products"
                           onClick={() => setCategoryMenuOpen(false)}
-                          className="block px-4 py-2.5 text-lg font-semibold text-teal-600 dark:text-teal-300 border-t border-line dark:border-base-300 hover:bg-teal-50 dark:hover:bg-base-200 transition"
+                          className="block px-4 py-2.5 text-sm font-semibold text-teal-600 dark:text-teal-300 border-t border-line dark:border-base-300 hover:bg-teal-50 dark:hover:bg-base-200 transition"
                         >
-                          View all products &rarr;
+                          View All Products &rarr;
                         </Link>
                       </Motion.div>
                     )}
                   </AnimatePresence>
                 </div>
 
-                {/* ── Desktop Nav Links ── */}
-                <div className="hidden lg:flex items-center gap-1">
+                {/* Desktop Nav Links */}
+                <div className="hidden xl:flex items-center gap-0.5">
                   {NAV_LINKS.map((link) => (
                     <Link
                       key={link.label}
                       to={link.to}
-                      className="relative px-3 py-2 text-lg font-semibold text-base-content/70 dark:text-base-content hover:text-orange-600 dark:hover:text-orange-400 transition-colors duration-200"
+                      className="px-3 py-2 text-base font-semibold text-base-content/70 dark:text-base-content hover:text-orange-600 dark:hover:text-orange-400 transition-colors"
                     >
                       {link.label}
                     </Link>
@@ -223,29 +219,29 @@ const Navbar = () => {
             )}
           </div>
 
-          {/* ── Search (persistent, desktop) ── */}
+          {/* Center: Search */}
           {!isAuthPage && (
             <form
               onSubmit={handleSearch}
-              className="hidden md:flex items-center flex-1 max-w-md mx-2"
+              className="hidden md:flex items-center flex-1 max-w-sm lg:max-w-md mx-2"
             >
-              <div className="flex items-center gap-2 w-full bg-base-200 dark:bg-base-200 rounded-full px-4 py-2 border border-transparent focus-within:border-orange-400 transition">
-                <FiSearch className="text-base-content/40 shrink-0" size={17} />
+              <div className="flex items-center gap-2 w-full bg-base-200 dark:bg-base-200 rounded-full px-4 py-2.5 border border-transparent focus-within:border-orange-400 transition">
+                <FiSearch className="text-base-content/40 shrink-0" size={16} />
                 <input
                   type="text"
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  placeholder="Search products..."
-                  className="w-full bg-transparent outline-none text-lg text-base-content placeholder-base-content/40"
+                  placeholder="Search Products..."
+                  className="w-full bg-transparent outline-none text-base text-base-content placeholder-base-content/40"
                 />
               </div>
             </form>
           )}
 
-          {/* ── Right: icons + auth + theme (desktop & mobile) ── */}
+          {/* Right: Icons + Auth + Theme */}
           <div className="flex items-center gap-1 shrink-0">
-            {/* ── Desktop Right Side ── */}
-            <div className="hidden lg:flex items-center gap-1">
+            {/* Desktop Right */}
+            <div className="hidden xl:flex items-center gap-1">
               {(!user || user.role === "customer") && !isAuthPage && (
                 <>
                   {/* Wishlist */}
@@ -253,16 +249,16 @@ const Navbar = () => {
                     whileHover={{ scale: 1.1 }}
                     whileTap={{ scale: 0.95 }}
                     onClick={() => navigate("/wishlist")}
-                    className="relative p-2.5 rounded-sm hover:bg-teal-50 dark:hover:bg-base-200 text-base-content/70 dark:text-base-content hover:text-teal-600 dark:hover:text-teal-300 transition-colors"
+                    className="relative p-2.5 rounded-lg hover:bg-teal-50 dark:hover:bg-base-200 text-base-content/70 hover:text-teal-600 dark:hover:text-teal-300 transition-colors"
                     title="Wishlist"
                   >
                     {wishlist.length > 0 ? (
                       <FaHeart
-                        size={19}
+                        size={18}
                         className="text-teal-600 dark:text-teal-300"
                       />
                     ) : (
-                      <FaRegHeart size={19} />
+                      <FaRegHeart size={18} />
                     )}
                     {wishlist.length > 0 && (
                       <span className="absolute -top-1 -right-1 w-4 h-4 bg-teal-600 text-white text-[9px] font-bold rounded-full flex items-center justify-center">
@@ -276,10 +272,10 @@ const Navbar = () => {
                     whileHover={{ scale: 1.1 }}
                     whileTap={{ scale: 0.95 }}
                     onClick={() => navigate("/cart")}
-                    className="relative p-2.5 rounded-sm hover:bg-orange-50 dark:hover:bg-base-200 text-base-content/70 dark:text-base-content hover:text-orange-600 dark:hover:text-orange-400 transition-colors"
+                    className="relative p-2.5 rounded-lg hover:bg-orange-50 dark:hover:bg-base-200 text-base-content/70 hover:text-orange-600 transition-colors"
                     title="Cart"
                   >
-                    <FaShoppingBag size={19} />
+                    <FaShoppingBag size={18} />
                     <AnimatePresence>
                       {cartCount > 0 && (
                         <Motion.span
@@ -300,7 +296,7 @@ const Navbar = () => {
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.97 }}
                       onClick={() => navigate("/customer/orders")}
-                      className="px-3 py-2 text-lg font-semibold text-base-content/70 dark:text-base-content hover:text-orange-600 dark:hover:text-orange-400 transition-colors"
+                      className="px-3 py-2 text-base font-semibold text-base-content/70 hover:text-orange-600 dark:hover:text-orange-400 transition-colors"
                     >
                       Orders
                     </Motion.button>
@@ -312,7 +308,7 @@ const Navbar = () => {
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.97 }}
                         onClick={() => navigate("/customer/seller-dashboard")}
-                        className="px-3 py-2 text-lg font-semibold text-base-content/70 dark:text-base-content hover:text-orange-600 dark:hover:text-orange-400 transition-colors"
+                        className="px-3 py-2 text-base font-semibold text-base-content/70 hover:text-orange-600 dark:hover:text-orange-400 transition-colors"
                       >
                         My Store
                       </Motion.button>
@@ -320,7 +316,7 @@ const Navbar = () => {
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.97 }}
                         onClick={() => navigate("/customer/my-products")}
-                        className="px-3 py-2 text-lg font-semibold text-base-content/70 dark:text-base-content hover:text-orange-600 dark:hover:text-orange-400 transition-colors"
+                        className="px-3 py-2 text-base font-semibold text-base-content/70 hover:text-orange-600 dark:hover:text-orange-400 transition-colors"
                       >
                         My Products
                       </Motion.button>
@@ -328,7 +324,7 @@ const Navbar = () => {
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.97 }}
                         onClick={() => navigate("/customer/create-product")}
-                        className="px-3 py-2 text-lg font-semibold bg-orange-500 hover:bg-orange-600 text-white rounded-full transition"
+                        className="px-3 py-2 text-base font-semibold bg-orange-500 hover:bg-orange-600 text-white rounded-full transition"
                       >
                         + List Product
                       </Motion.button>
@@ -337,27 +333,27 @@ const Navbar = () => {
                 </>
               )}
 
-              {/* Auth buttons */}
+              {/* Auth Buttons */}
               {!token ? (
                 !isAuthPage && (
                   <div className="flex items-center gap-2 ml-1">
                     <HashLink
                       to="/login"
-                      className="px-4 py-2 text-lg font-semibold text-base-content/70 dark:text-base-content hover:text-orange-600 dark:hover:text-orange-400 transition-colors"
+                      className="px-4 py-2 text-base font-semibold text-base-content/70 hover:text-orange-600 dark:hover:text-orange-400 transition-colors"
                     >
                       Login
                     </HashLink>
                     <HashLink
                       to="/register/customer"
-                      className="px-4 py-2 text-lg font-semibold border border-ink dark:border-base-content text-ink dark:text-base-content hover:bg-ink hover:text-cream dark:hover:bg-base-content dark:hover:text-base-100 rounded-full transition-all duration-200"
+                      className="px-4 py-2 text-base font-semibold border border-ink dark:border-base-content text-ink dark:text-base-content hover:bg-ink hover:text-cream rounded-full transition-all"
                     >
                       Sign Up
                     </HashLink>
                     <HashLink
                       to="/register/vendor"
-                      className="px-4 py-2 text-lg font-semibold bg-orange-500 hover:bg-orange-600 text-white rounded-full transition-all duration-200 shadow-sm"
+                      className="px-4 py-2 text-base font-semibold bg-orange-500 hover:bg-orange-600 text-white rounded-full transition-all shadow-sm"
                     >
-                      Sell with Us
+                      Sell With Us
                     </HashLink>
                   </div>
                 )
@@ -370,47 +366,43 @@ const Navbar = () => {
                           ? "/vendor/dashboard"
                           : "/admin/dashboard"
                       }
-                      className="flex items-center gap-1.5 px-3 py-2 rounded-full bg-base-200 dark:bg-base-200 text-lg font-semibold text-base-content dark:text-base-content hover:bg-orange-50 hover:text-orange-600 dark:hover:text-orange-400 transition"
+                      className="flex items-center gap-1.5 px-3 py-2 rounded-full bg-base-200 text-base font-semibold text-base-content hover:bg-orange-50 hover:text-orange-600 transition"
                     >
-                      <FaTachometerAlt size={13} />
-                      Dashboard
+                      <FaTachometerAlt size={13} /> Dashboard
                     </HashLink>
                   )}
-
-                  {/* User pill */}
                   {(!user?.role || user.role === "customer") && (
                     <Motion.button
                       whileHover={{ scale: 1.02 }}
                       onClick={() => navigate("/customer/profile")}
-                      className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-base-200 dark:bg-base-200 hover:bg-orange-50 dark:hover:bg-base-300 transition cursor-pointer"
+                      className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-base-200 hover:bg-orange-50 transition cursor-pointer"
                     >
                       <div className="w-7 h-7 rounded-full bg-orange-500 flex items-center justify-center text-white text-sm font-bold">
                         {user?.name?.[0]?.toUpperCase() || <FiUser size={12} />}
                       </div>
-                      <span className="text-base font-semibold text-base-content dark:text-base-content max-w-[100px] truncate">
+                      <span className="text-base font-semibold text-base-content max-w-[100px] truncate">
                         {user?.name}
                       </span>
                     </Motion.button>
                   )}
-
                   <Motion.button
                     whileHover={{ scale: 1.1 }}
                     whileTap={{ scale: 0.95 }}
                     onClick={handleLogout}
-                    className="p-2.5 rounded-sm bg-red-50 dark:bg-red-900/20 text-red-500 hover:bg-red-100 transition"
+                    className="p-2.5 rounded-lg bg-red-50 dark:bg-red-900/20 text-red-500 hover:bg-red-100 transition"
                     title="Logout"
                   >
-                    <FaSignOutAlt size={17} />
+                    <FaSignOutAlt size={16} />
                   </Motion.button>
                 </div>
               )}
 
-              {/* Theme toggle */}
+              {/* Theme Toggle */}
               <Motion.button
                 whileHover={{ scale: 1.1, rotate: 20 }}
                 whileTap={{ scale: 0.9 }}
                 onClick={toggleTheme}
-                className="p-2.5 rounded-sm hover:bg-base-200 dark:hover:bg-base-200 text-base-content/60 dark:text-base-content transition"
+                className="p-2.5 rounded-lg hover:bg-base-200 text-base-content/60 transition ml-1"
               >
                 <AnimatePresence mode="wait">
                   <Motion.div
@@ -420,20 +412,23 @@ const Navbar = () => {
                     exit={{ rotate: 90, opacity: 0 }}
                     transition={{ duration: 0.2 }}
                   >
-                    {isDark ? <FaSun size={18} /> : <FaMoon size={18} />}
+                    {isDark ? <FaSun size={17} /> : <FaMoon size={17} />}
                   </Motion.div>
                 </AnimatePresence>
               </Motion.button>
             </div>
 
-            {/* ── Mobile Right ── */}
-            <div className="flex lg:hidden items-center gap-1" ref={mobileRef}>
+            {/* Mobile/Tablet Right */}
+            <div
+              className="flex xl:hidden items-center gap-1.5"
+              ref={mobileRef}
+            >
               {(!user || user.role === "customer") && !isAuthPage && (
                 <Motion.button
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.95 }}
                   onClick={() => navigate("/cart")}
-                  className="relative p-2 text-base-content/70 dark:text-base-content"
+                  className="relative p-2 text-base-content/70"
                 >
                   <FaShoppingBag size={20} />
                   <AnimatePresence>
@@ -452,10 +447,20 @@ const Navbar = () => {
                 </Motion.button>
               )}
 
+              {/* Theme Toggle Mobile */}
+              <Motion.button
+                whileTap={{ scale: 0.9 }}
+                onClick={toggleTheme}
+                className="p-2 rounded-lg hover:bg-base-200 text-base-content/60 transition"
+              >
+                {isDark ? <FaSun size={18} /> : <FaMoon size={18} />}
+              </Motion.button>
+
+              {/* Hamburger */}
               <Motion.button
                 whileTap={{ scale: 0.9 }}
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                className="p-2 rounded-sm text-base-content/70 dark:text-base-content hover:bg-base-200 dark:hover:bg-base-200 transition"
+                className="p-2 rounded-lg text-base-content/70 hover:bg-base-200 transition"
               >
                 <AnimatePresence mode="wait">
                   <Motion.div
@@ -477,22 +482,22 @@ const Navbar = () => {
           </div>
         </div>
 
-        {/* ── Category strip (desktop, below main bar) ── */}
+        {/* Category Strip — desktop */}
         {!isAuthPage && categories.length > 0 && (
-          <div className="hidden lg:block border-t border-line dark:border-base-300 mt-2">
-            <div className="px-4 sm:px-10 lg:px-16 flex items-center gap-6 overflow-x-auto py-2 text-lg text-base-content/60 dark:text-base-content/70">
+          <div className="hidden xl:block border-t border-line dark:border-base-300 mt-2">
+            <div className="px-4 sm:px-8 lg:px-16 flex items-center gap-6 overflow-x-auto py-2">
               {categories.map((cat) => (
                 <button
                   key={cat._id}
                   onClick={() => goToCategory(cat)}
-                  className="whitespace-nowrap hover:text-orange-600 dark:hover:text-orange-400 transition"
+                  className="whitespace-nowrap text-sm font-medium text-base-content/60 hover:text-orange-600 dark:hover:text-orange-400 transition capitalize"
                 >
                   {cat.name}
                 </button>
               ))}
               <Link
                 to="/products?sale=true"
-                className="whitespace-nowrap font-semibold text-teal-600 dark:text-teal-300 hover:text-orange-600 dark:hover:text-orange-400 transition"
+                className="whitespace-nowrap text-sm font-semibold text-teal-600 dark:text-teal-300 hover:text-orange-600 transition"
               >
                 Sale
               </Link>
@@ -501,20 +506,21 @@ const Navbar = () => {
         )}
       </Motion.nav>
 
-      {/* ── Mobile Menu ── */}
+      {/* Mobile Menu */}
       <AnimatePresence>
         {isMobileMenuOpen && (
           <Motion.div
-            initial={{ opacity: 0, y: -10, height: 0 }}
-            animate={{ opacity: 1, y: 0, height: "auto" }}
-            exit={{ opacity: 0, y: -10, height: 0 }}
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.25, ease: "easeOut" }}
-            className="lg:hidden overflow-hidden bg-base-100 border-t border-b border-line dark:border-base-300"
+            className="xl:hidden overflow-hidden bg-base-100 border-t border-b border-line dark:border-base-300 shadow-lg"
           >
-            <div className="px-4 sm:px-10 lg:px-16 py-4 flex flex-col gap-1">
+            <div className="px-4 sm:px-8 py-4 flex flex-col gap-1 max-h-[80vh] overflow-y-auto">
+              {/* Mobile Search */}
               {!isAuthPage && (
-                <form onSubmit={handleSearch} className="mb-2">
-                  <div className="flex items-center gap-2 bg-base-200 rounded-full px-4 py-2.5 border border-transparent focus-within:border-orange-400 transition">
+                <form onSubmit={handleSearch} className="mb-3">
+                  <div className="flex items-center gap-2 bg-base-200 rounded-full px-4 py-3 border border-transparent focus-within:border-orange-400 transition">
                     <FiSearch
                       className="text-base-content/40 shrink-0"
                       size={16}
@@ -523,13 +529,14 @@ const Navbar = () => {
                       type="text"
                       value={searchQuery}
                       onChange={(e) => setSearchQuery(e.target.value)}
-                      placeholder="Search products..."
-                      className="w-full bg-transparent outline-none text-lg text-base-content placeholder-base-content/40"
+                      placeholder="Search Products..."
+                      className="w-full bg-transparent outline-none text-base text-base-content placeholder-base-content/40"
                     />
                   </div>
                 </form>
               )}
 
+              {/* Nav Links */}
               {!isAuthPage &&
                 NAV_LINKS.map((link, i) => (
                   <Motion.div
@@ -541,16 +548,17 @@ const Navbar = () => {
                     <Link
                       to={link.to}
                       onClick={() => setIsMobileMenuOpen(false)}
-                      className="block px-4 py-3 rounded-sm text-lg font-semibold text-base-content dark:text-base-content hover:bg-orange-50 dark:hover:bg-base-200 hover:text-orange-600 dark:hover:text-orange-400 transition"
+                      className="block px-4 py-3 rounded-xl text-base font-semibold text-base-content hover:bg-orange-50 dark:hover:bg-base-200 hover:text-orange-600 transition"
                     >
                       {link.label}
                     </Link>
                   </Motion.div>
                 ))}
 
+              {/* Categories */}
               {!isAuthPage && categories.length > 0 && (
                 <>
-                  <p className="px-4 pt-3 pb-1 text-xs uppercase tracking-[0.2em] text-base-content/40 font-semibold">
+                  <p className="px-4 pt-3 pb-2 text-xs uppercase tracking-[0.2em] text-base-content/40 font-semibold">
                     Categories
                   </p>
                   <div className="px-4 flex flex-wrap gap-2 pb-2">
@@ -561,7 +569,7 @@ const Navbar = () => {
                           goToCategory(cat);
                           setIsMobileMenuOpen(false);
                         }}
-                        className="px-3 py-1.5 rounded-full border border-line dark:border-base-300 text-xs font-medium text-base-content/70 hover:border-orange-400 hover:text-orange-600 dark:hover:text-orange-400 transition"
+                        className="px-3 py-1.5 rounded-full border border-line dark:border-base-300 text-sm font-medium text-base-content/70 hover:border-orange-400 hover:text-orange-600 transition capitalize"
                       >
                         {cat.name}
                       </button>
@@ -570,98 +578,67 @@ const Navbar = () => {
                 </>
               )}
 
+              {/* Customer Links */}
               {user && (!user.role || user.role === "customer") && (
                 <>
-                  <Motion.div
-                    initial={{ opacity: 0, x: -16 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: 0.15 }}
-                  >
-                    <button
-                      onClick={() => {
-                        navigate("/customer/orders");
-                        setIsMobileMenuOpen(false);
-                      }}
-                      className="w-full text-left px-4 py-3 rounded-sm text-base font-semibold text-base-content dark:text-base-content hover:bg-orange-50 hover:text-orange-600 dark:hover:text-orange-400 transition"
+                  <div className="h-px bg-base-200 dark:bg-base-300 my-2" />
+                  {[
+                    { label: "Orders", path: "/customer/orders" },
+                    { label: "Wishlist", path: "/wishlist" },
+                    { label: "My Store", path: "/customer/seller-dashboard" },
+                    { label: "My Products", path: "/customer/my-products" },
+                  ].map((item, i) => (
+                    <Motion.div
+                      key={item.label}
+                      initial={{ opacity: 0, x: -16 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: 0.15 + i * 0.05 }}
                     >
-                      My Orders
-                    </button>
-                  </Motion.div>
-                  {user?.role === "customer" && (
-                    <>
-                      <Motion.div
-                        initial={{ opacity: 0, x: -16 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ delay: 0.17 }}
+                      <button
+                        onClick={() => {
+                          navigate(item.path);
+                          setIsMobileMenuOpen(false);
+                        }}
+                        className="w-full text-left px-4 py-3 rounded-xl text-base font-semibold text-base-content hover:bg-orange-50 hover:text-orange-600 transition"
                       >
-                        <button
-                          onClick={() => {
-                            navigate("/customer/my-products");
-                            setIsMobileMenuOpen(false);
-                          }}
-                          className="w-full text-left px-4 py-3 rounded-sm text-base font-semibold text-base-content dark:text-base-content hover:bg-orange-50 hover:text-orange-600 dark:hover:text-orange-400 transition"
-                        >
-                          My Products
-                        </button>
-                      </Motion.div>
-                      <Motion.div
-                        initial={{ opacity: 0, x: -16 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ delay: 0.19 }}
-                      >
-                        <button
-                          onClick={() => {
-                            navigate("/customer/create-product");
-                            setIsMobileMenuOpen(false);
-                          }}
-                          className="w-full text-left px-4 py-3 rounded-sm text-base font-semibold text-orange-600 dark:text-orange-400 hover:bg-orange-50 transition"
-                        >
-                          + List a Product
-                        </button>
-                      </Motion.div>
-                    </>
-                  )}
-                  <Motion.div
-                    initial={{ opacity: 0, x: -16 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: 0.18 }}
+                        {item.label}
+                        {item.label === "Wishlist" && wishlist.length > 0 && (
+                          <span className="ml-2 inline-flex w-5 h-5 bg-teal-600 text-white text-[10px] font-bold rounded-full items-center justify-center">
+                            {wishlist.length}
+                          </span>
+                        )}
+                      </button>
+                    </Motion.div>
+                  ))}
+                  <button
+                    onClick={() => {
+                      navigate("/customer/create-product");
+                      setIsMobileMenuOpen(false);
+                    }}
+                    className="w-full text-left px-4 py-3 rounded-xl text-base font-semibold text-orange-600 hover:bg-orange-50 transition"
                   >
-                    <button
-                      onClick={() => {
-                        navigate("/wishlist");
-                        setIsMobileMenuOpen(false);
-                      }}
-                      className="w-full text-left flex items-center justify-between px-4 py-3 rounded-sm text-base font-semibold text-base-content dark:text-base-content hover:bg-teal-50 hover:text-teal-600 dark:hover:text-teal-300 transition"
-                    >
-                      <span className="flex items-center gap-2">
-                        <FaRegHeart size={14} /> Wishlist
-                      </span>
-                      {wishlist.length > 0 && (
-                        <span className="w-5 h-5 bg-teal-600 text-white text-[10px] font-bold rounded-full flex items-center justify-center">
-                          {wishlist.length}
-                        </span>
-                      )}
-                    </button>
-                  </Motion.div>
+                    + List A Product
+                  </button>
                 </>
               )}
 
               <div className="h-px bg-base-200 dark:bg-base-300 my-2" />
 
+              {/* Auth */}
               {!token ? (
                 !isAuthPage && (
                   <div className="flex flex-col gap-2">
                     <HashLink
                       to="/login"
                       onClick={() => setIsMobileMenuOpen(false)}
-                      className="px-4 py-3 rounded-full text-base font-semibold text-center text-base-content border border-line dark:border-base-300 hover:border-orange-400 hover:text-orange-600 dark:hover:text-orange-400 transition"
+                      className="px-4 py-3 rounded-full text-base font-semibold text-center border border-line hover:border-orange-400 hover:text-orange-600 transition"
                     >
                       Login
                     </HashLink>
                     <HashLink
                       to="/register/customer"
                       onClick={() => setIsMobileMenuOpen(false)}
-                      className="px-4 py-3 rounded-full text-base font-semibold text-center border border-ink dark:border-base-content text-ink dark:text-base-content hover:bg-ink hover:text-cream dark:hover:bg-base-content dark:hover:text-base-100 transition"
+                      className="px-4 py-3 rounded-full text-base font-semibold text-center border border-ink dark:border-base-content text-ink hover:bg-ink hover:text-cream transition"
                     >
                       Customer Sign Up
                     </HashLink>
@@ -670,18 +647,18 @@ const Navbar = () => {
                       onClick={() => setIsMobileMenuOpen(false)}
                       className="px-4 py-3 rounded-full text-base font-semibold text-center bg-orange-500 hover:bg-orange-600 text-white transition"
                     >
-                      Sell with Us
+                      Sell With Us
                     </HashLink>
                   </div>
                 )
               ) : (
                 <div className="flex flex-col gap-2">
-                  <div className="flex items-center gap-3 px-4 py-3 bg-base-200 dark:bg-base-200 rounded-sm">
-                    <div className="w-8 h-8 rounded-full bg-orange-500 flex items-center justify-center text-white text-base font-bold">
+                  <div className="flex items-center gap-3 px-4 py-3 bg-base-200 dark:bg-base-200 rounded-xl">
+                    <div className="w-9 h-9 rounded-full bg-orange-500 flex items-center justify-center text-white text-base font-bold shrink-0">
                       {user?.name?.[0]?.toUpperCase() || "U"}
                     </div>
                     <div>
-                      <p className="text-base font-bold text-base-content dark:text-base-content">
+                      <p className="text-base font-bold text-base-content">
                         {user?.name}
                       </p>
                       <p className="text-xs text-base-content/40 capitalize">
@@ -698,7 +675,7 @@ const Navbar = () => {
                           : "/admin/dashboard"
                       }
                       onClick={() => setIsMobileMenuOpen(false)}
-                      className="flex items-center gap-2 px-4 py-3 rounded-sm text-base font-semibold text-base-content dark:text-base-content hover:bg-orange-50 hover:text-orange-600 dark:hover:text-orange-400 transition"
+                      className="flex items-center gap-2 px-4 py-3 rounded-xl text-base font-semibold text-base-content hover:bg-orange-50 hover:text-orange-600 transition"
                     >
                       <FaTachometerAlt size={13} /> Dashboard
                     </HashLink>
@@ -709,25 +686,12 @@ const Navbar = () => {
                       handleLogout();
                       setIsMobileMenuOpen(false);
                     }}
-                    className="flex items-center justify-center gap-2 px-4 py-3 rounded-sm text-base font-semibold bg-red-50 dark:bg-red-900/20 text-red-500 hover:bg-red-100 transition"
+                    className="flex items-center justify-center gap-2 px-4 py-3 rounded-xl text-base font-semibold bg-red-50 dark:bg-red-900/20 text-red-500 hover:bg-red-100 transition"
                   >
                     <FaSignOutAlt /> Logout
                   </button>
                 </div>
               )}
-
-              <div className="h-px bg-base-200 dark:bg-base-300 my-2" />
-
-              <button
-                onClick={() => {
-                  toggleTheme();
-                  setIsMobileMenuOpen(false);
-                }}
-                className="flex items-center gap-3 px-4 py-3 rounded-sm text-base font-semibold text-base-content dark:text-base-content hover:bg-base-200 dark:hover:bg-base-200 transition"
-              >
-                {isDark ? <FaSun size={15} /> : <FaMoon size={15} />}
-                {isDark ? "Switch to Light Mode" : "Switch to Dark Mode"}
-              </button>
             </div>
           </Motion.div>
         )}
